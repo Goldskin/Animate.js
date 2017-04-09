@@ -31,7 +31,7 @@ var myAnimation = new Animate();
 myAnimation
     .setDuration(duration) // 500 ms (optionnal)
     .setEase(easing) // easing style (optionnal)
-    .setFps(fps) // easing style (optionnal)
+    .setFps(fps) // frames per second (optionnal)
     .request(function () {
         window.scrollTo(0, myAnimation.interpolation(initial, target)); // animation
     }, function () {
