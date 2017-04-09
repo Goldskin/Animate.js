@@ -10,10 +10,9 @@ var myAnimation = new Animate();
 
 myAnimation
     .request(function () {
-        window.scrollTo(0, myAnimation.interpolation(initial, target)); // animation
+        console.log(myAnimation.interpolation(initial, target)); // animation
     }, function () {
-        window.scrollTo(0, scrollTargetY); // callback when its done
-        console.log('done');
+        console.log('done'); // callback
     });
 ```
 
@@ -34,6 +33,6 @@ myAnimation
     .request(function () {
         window.scrollTo(0, myAnimation.interpolation(initial, target)); // animation
     }, function () {
-        window.scrollTo(0, scrollTargetY); // callback when its done
+        window.scrollTo(0, scrollTargetY); // callback
     });
 ```
