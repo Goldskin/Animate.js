@@ -1,5 +1,4 @@
 var easingEquations = require('./easing.js');
-
 window.requestAnimFrame = (function() {
     return window.requestAnimationFrame ||
         window.webkitRequestAnimationFrame ||
@@ -22,12 +21,22 @@ var Animate = function () {
 Animate.prototype = {
 
     /**
-     * easy mod
+     * ease mod
      * @param  {string} ease    easename
      * @return {object} this
      */
     setEase: function (ease) {
         this.ease = ease;
+        return this;
+    },
+    
+    /**
+     * set fps
+     * @param  {integer} fps 
+     * @return {object} this
+     */
+    setFps: function (fps) {
+        this.fps = fps;
         return this;
     },
 
