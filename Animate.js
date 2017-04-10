@@ -119,19 +119,18 @@ Animate.prototype = {
      */
     loop: function  () {
         var delta       = this.getDelta();
-        var progress    = this.getProgress(delta);
-        this.currentInt = easingEquations[this.ease](progress);
-        if (progress < 1 && delta > this.interval) {
-            this.callback1(this.currentInt);
-            requestAnimFrame(this.loop.bind(this));
-        } else if (progress < 1 && delta < this.interval) {
-            requestAnimFrame(this.loop.bind(this));
-        } else {
-            if (this.callback2) {
-                this.callback2();
+        if (delta > this.interval) {
+            var progress    = this.getProgress(delta);
+            this.currentInt = easingEquations[this.ease](progress);
+            if (progress < 1) {
+                this.callback1(this.currentInt);
+            } else {
+                if (this.callback2) this.callback2();
                 this.start = 0;
+                return;
             }
         }
+        requestAnimFrame(this.loop.bind(this));
     },
 
     /**
@@ -149,7 +148,7 @@ Animate.prototype = {
      */
     getDelta: function () {
         return Date.now() - this.start;
-    },
+    }
 
 };
 
