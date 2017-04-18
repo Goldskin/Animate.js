@@ -22,7 +22,7 @@ require('./Animate.js');
 var initial  = Window.scrollY;  // initial value
 var target   = 2400;            // target value
 var easing   = 'bounce';        // easing style
-var easing   = 60;              // frames per second
+var fps      = 60;              // frames per second
 var duration = 500;             // duration in ms
 
 
