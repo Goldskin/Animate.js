@@ -35,6 +35,6 @@ myAnimation
     .request(function () {
         window.scrollTo(0, myAnimation.interpolation(initial, target)); // animation
     }, function () {
-        window.scrollTo(0, scrollTargetY); // callback
+        window.scrollTo(0, target); // callback
     });
 ```
