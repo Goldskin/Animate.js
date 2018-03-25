@@ -173,6 +173,10 @@ Animate.prototype = {
         return this;
     },
 
+    /**
+     * save a callBack after the animation
+     * @param {function} callback2 Callback when it's done
+     */
     callback: function (callback2) {
         this.callback2 = callback2;
     },
