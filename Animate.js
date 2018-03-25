@@ -39,8 +39,11 @@ window.requestAnimFrame = (function () {
 var Animate = function () {
     this.duration = 400;
     this.fps = 60;
+    this.fps = 60;
     this.interval = 1000 / this.fps;
     this.ease = 'easeInOutCubic';
+    this.callback1 = null;
+    this.callback2 = null;
 };
 
 Animate.prototype = {
@@ -154,7 +157,12 @@ Animate.prototype = {
 
         // get callbacks
         this.callback1 = callback1;
-        this.callback2 = callback2;
+        
+        if (typeof callback2 !== 'undefined') {
+            console.log(callback2);
+            
+            this.callback2 = callback2;
+        }
 
         // get initial start
         this.start = Date.now();
@@ -163,6 +171,10 @@ Animate.prototype = {
         this.then = Date.now();
         this.loop();
         return this;
+    },
+
+    callback: function (callback2) {
+        this.callback2 = callback2;
     },
 
     /**
