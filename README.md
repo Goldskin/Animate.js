@@ -8,12 +8,9 @@ var target  = 100;  // target value
 
 var myAnimation = new Animate();
 
-myAnimation
-    .request(function () {
-        console.log(myAnimation.interpolation(initial, target)); // animation
-    }, function () {
-        console.log('done'); // callback
-    });
+myAnimation.request(function () {
+    console.log(myAnimation.interpolation(initial, target)); // animation
+});
 ```
 
 ```Js
@@ -34,5 +31,7 @@ myAnimation
     .setFps(fps)            // frames per second (optionnal)
     .request(function () {
         window.scrollTo(0, myAnimation.interpolation(initial, target)); // animation
-    });
+    }).callback(function () {
+        console.log(over);
+    }
 ```
