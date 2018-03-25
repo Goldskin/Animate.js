@@ -24,11 +24,11 @@ SOFTWARE.
 
 var easingEquations = require('./easing.js');
 
-window.requestAnimFrame = (function() {
+window.requestAnimFrame = (function () {
     return window.requestAnimationFrame ||
         window.webkitRequestAnimationFrame ||
         window.mozRequestAnimationFrame ||
-        function(callback) {
+        function (callback) {
             window.setTimeout(callback, 1000 / 60);
         };
 })();
@@ -38,9 +38,9 @@ window.requestAnimFrame = (function() {
  */
 var Animate = function () {
     this.duration = 400;
-    this.fps      = 60;
-    this.interval = 1000/this.fps;
-    this.ease     = 'easeInOutCubic';
+    this.fps = 60;
+    this.interval = 1000 / this.fps;
+    this.ease = 'easeInOutCubic';
 };
 
 Animate.prototype = {
@@ -157,10 +157,10 @@ Animate.prototype = {
         this.callback2 = callback2;
 
         // get initial start
-        this.start     = Date.now();
+        this.start = Date.now();
 
         // get time for interval
-        this.then      = Date.now();
+        this.then = Date.now();
         this.loop();
         return this;
     },
@@ -169,7 +169,7 @@ Animate.prototype = {
      * loop function
      * @return {void}
      */
-    loop: function  () {
+    loop: function () {
 
         // current
         var now = Date.now();
@@ -182,17 +182,29 @@ Animate.prototype = {
 
             // ================= drawing =================
             // get progress with ease
-            var progress            = this.getProgress();
-            this.currentIntWithEase = easingEquations[this.ease](progress);
+            var progress = this.getProgress();            
+
 
             // if progress is between 0 and 1
             if (progress < 1) {
-                if (this.callback1) this.callback1(this.currentIntWithEase);
-            }
+                // current easing
+                this.currentIntWithEase = easingEquations[this.ease](progress);            
+                
+                // call current callback
+                if (this.callback1 && typeof this.callback1 === 'function')
+                    this.callback1(this.currentIntWithEase);                    
+            } else { // animation is done
+                // call current callback and finish it
 
-            // animation is done
-            else {
-                if (this.callback2) this.callback2();
+                this.currentIntWithEase = easingEquations[this.ease](1);
+                if (this.callback1 && typeof this.callback2 === 'function') 
+                    this.callback1(this.currentIntWithEase);
+
+                // optionnal callback
+                if (this.callback2 && typeof this.callback2 === 'function') 
+                    this.callback2();
+                
+                
                 this.start = 0;
                 return this;
             }
