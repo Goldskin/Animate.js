@@ -32,6 +32,6 @@ myAnimation
     .request(function () {
         window.scrollTo(0, myAnimation.interpolation(initial, target)); // animation
     }).callback(function () {
-        console.log(over);
+        console.log('over');
     }
 ```
