@@ -3,10 +3,10 @@
 ```Js
 require('./Animate.js');
 
-var initial = 0;    // initial value
-var target  = 100;  // target value
+const initial = 0;    // initial value
+const target  = 100;  // target value
 
-var myAnimation = new Animate();
+const myAnimation = new Animate();
 
 myAnimation.request(function () {
     console.log(myAnimation.interpolation(initial, target)); // animation
@@ -16,20 +16,20 @@ myAnimation.request(function () {
 ```Js
 require('./Animate.js');
 
-var initial  = Window.scrollY;  // initial value
-var target   = 2400;            // target value
-var easing   = 'bounce';        // easing style
-var fps      = 60;              // frames per second
-var duration = 500;             // duration in ms
+const initial  = Window.scrollY;  // initial value
+const target   = 2400;            // target value
+const easing   = 'bounce';        // easing style
+const fps      = 60;              // frames per second
+const duration = 500;             // duration in ms
 
 
-var myAnimation = new Animate();
+const myAnimation = new Animate();
 
 myAnimation
     .setDuration(duration)  // 500 ms (optionnal)
     .setEase(easing)        // easing style (optionnal)
     .setFps(fps)            // frames per second (optionnal)
-    .request(function () {
+    .request(() => {
         window.scrollTo(0, myAnimation.interpolation(initial, target)); // animation
     })
     .callback(() => console.log('over'));
