@@ -31,7 +31,6 @@ myAnimation
     .setFps(fps)            // frames per second (optionnal)
     .request(function () {
         window.scrollTo(0, myAnimation.interpolation(initial, target)); // animation
-    }).callback(function () {
-        console.log('over');
-    }
+    })
+    .callback(() => console.log('over'));
 ```
